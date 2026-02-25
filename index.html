@@ -3,209 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación de Certificado - UNAB</title>
+    <title>Certificados UNAB</title>
     <style>
+        :root {
+            --unab-red: #A61A32;
+            --unab-dark-blue: #0f1c2b;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --text-light-gray: #999999;
+            --border-color: #e0e0e0;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff;
-            color: #555;
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Header */
+        /* Contenedor principal para simular la vista móvil */
+        .mobile-container {
+            width: 100%;
+            max-width: 400px; /* Ancho típico de un móvil grande */
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabecera */
         header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ddd;
-            background-color: #fff;
+            align-items: stretch;
+            border-bottom: 2px solid var(--unab-red);
+            height: 60px;
         }
 
-        .header-logo {
-            padding: 90px 95px;
-        }
-
-        .header-logo img {
-            height: 80px; 
-        }
-
-        .header-btn {
-            background-color: #b71c1c; /* Rojo UNAB */
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            font-size: 14px;
-            text-align: center;
-            height: 100%;
+        .logo-container {
+            padding: 10px 15px;
             display: flex;
             align-items: center;
+            flex: 1;
+        }
+
+        .logo-placeholder {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: var(--unab-dark-blue);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .header-title {
+            background-color: var(--unab-red);
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.2;
+            min-width: 90px;
         }
 
         /* Contenido Principal */
-        .container {
+        main {
             padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-            margin-bottom: 40px; 
+            flex: 1;
+            background-color: #fff;
+        }
+
+        .content-card {
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 4px;
         }
 
         .intro-text {
+            color: var(--text-gray);
             font-size: 14px;
-            color: #777;
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            font-size: 22px;
-            color: #666;
-            margin-bottom: 10px;
-            font-weight: normal;
-        }
-
-        .alert-text {
-            color: #9e1b32; /* Rojo oscuro */
-            font-size: 20px;
-            font-weight: normal;
-            line-height: 1.3;
             margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        h1.section-title-gray {
+            color: var(--text-gray);
+            font-size: 22px;
+            font-weight: normal;
+            margin: 0 0 10px 0;
+        }
+
+        h2.main-warning {
+            color: var(--unab-red);
+            font-size: 24px;
+            font-weight: normal;
+            line-height: 1.2;
             text-transform: uppercase;
+            margin: 0 0 20px 0;
         }
 
-        .section-title {
-            color: #9e1b32;
-            font-size: 20px;
-            margin-top: 25px;
-            margin-bottom: 10px;
+        h3.section-header {
+            color: var(--unab-red);
+            font-size: 22px;
+            font-weight: normal;
+            margin: 25px 0 15px 0;
         }
 
-        /* Datos */
         .data-group {
             margin-bottom: 15px;
         }
 
         .data-label {
             font-weight: bold;
-            color: #444;
-            display: block;
-            margin-bottom: 3px;
+            color: var(--text-dark);
+            font-size: 15px;
+            margin-bottom: 5px;
         }
 
         .data-value {
-            color: #666;
-            font-size: 16px;
+            color: var(--text-gray);
+            font-size: 15px;
         }
 
-        /* Botón Descarga PDF */
-        .download-box {
+        /* Botón de descarga PDF */
+        .pdf-download-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px 15px;
+            text-decoration: none;
+            margin-top: 10px;
+            background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+            box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .pdf-icon-placeholder {
+            color: #d32f2f;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .pdf-text {
+            color: #d32f2f;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: var(--unab-dark-blue);
+            padding: 40px 20px 80px 20px; /* Extra padding bottom for chatbot */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .accreditation-logo {
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            /* Estilos para el placeholder visual si no hay imagen */
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border: 1px dashed rgba(255,255,255,0.3);
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+
+        .footer-text {
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            font-size: 13px;
             margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        /* Widget de Chatbot */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* Adjust position relative to the mobile container if viewed on desktop */
+            z-index: 1000;
+        }
+
+        .chatbot-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px 20px 5px 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 1px dashed #333; /* El borde punteado que se ve en la captura */
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .avatar-circle {
+            width: 45px;
+            height: 45px;
+            background-color: #2c5ba3; /* Color azul del fondo del avatar */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .avatar-placeholder {
+            /* Simulación del avatar de la chica */
+            width: 30px;
+            height: 35px;
+            background-color: #e0ac8a;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+            top: 5px;
         }
         
-        .pdf-btn {
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 5px;
-            text-align: center;
-            text-decoration: none;
-            color: #b71c1c;
-            font-weight: bold;
-            font-size: 12px;
-            background: #f9f9f9;
+        .avatar-placeholder::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            background-color: #c92228;
+            border-radius: 5px 5px 0 0;
         }
 
-        .pdf-btn img {
-            display: block;
-            width: 40px;
-            margin: 0 auto 5px auto;
+        .chat-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        .chat-subtitle {
+            font-size: 12px;
+            color: var(--text-light-gray);
+        }
+
+        /* Media query para ajustar el chatbot si está dentro del contenedor móvil en escritorio */
+        @media (min-width: 401px) {
+            .chatbot-widget {
+                position: absolute;
+                bottom: 20px;
+                right: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
+<div class="mobile-container">
+    
     <header>
-        <div class="header-logo">
-            <img src="logo.jpg" alt="Instituto Profesional AIEP">
+        <div class="logo-container">
+            <div class="logo-placeholder">
+                <span class="logo-icon"></span> Universidad<br>Andrés Bello®
+            </div>
         </div>
-        <a href="#" class="header-btn">
+        <div class="header-title">
             Certificados<br>en línea
-        </a>
+        </div>
     </header>
 
-    <div class="container">
-        <p class="intro-text">A continuación se muestra la información del certificado consultado.</p>
+    <main>
+        <div class="content-card">
+            <p class="intro-text">A continuación se muestra la información del certificado consultado.</p>
 
-        <h2>Verificación Certificado</h2>
+            <h1 class="section-title-gray">Verificación Certificado</h1>
+            
+            <h2 class="main-warning">SÓLO PARA TITULADOS - Certificados de Título - SÓLO PARA TITULADOS: COPIA DE TÍTULO DEL AÑO 2014 O ANTERIOR</h2>
 
-        <div class="alert-text">
-            SÓLO PARA TITULADOS -<br>
-            Certificados de Títulos<br>
-            - SÓLO PARA<br>
-            TITULADOS: COPIA<br>
-            DE TÍTULO DEL AÑO<br>
-            2015 O ANTERIOR
-        </div>
+            <h3 class="section-header">Estado del certificado</h3>
+            
+            <div class="data-group">
+                <div class="data-label">Fecha Emisión:</div>
+                <div class="data-value">23-10-2020</div>
+            </div>
+            
+            <div class="data-group">
+                <div class="data-label">Válido Hasta:</div>
+                <div class="data-value">No Caduca</div>
+            </div>
 
-        <h3 class="section-title">Estado del certificado</h3>
+            <h3 class="section-header">Datos del certificado</h3>
+            <p class="intro-text">A continuación se muestran información del certificado.</p>
 
-        <div class="data-group">
-            <span class="data-label">Fecha Obtención del Titulo:</span>
-            <span class="data-value">17/12/2023</span>
-        </div>
+            <div class="data-group">
+                <div class="data-label">Rut:</div>
+                <div class="data-value">17.533.399-1</div>
+            </div>
 
-        <div class="data-group">
-            <span class="data-label">Válido Hasta:</span>
-            <span class="data-value">No Caduca</span>
-        </div>
+            <div class="data-group">
+                <div class="data-label">Apellidos:</div>
+                <div class="data-value">GARRIDO ALVARADO</div>
+            </div>
 
-        <h3 class="section-title">Datos del certificado</h3>
-        <p class="intro-text" style="margin-bottom: 20px;">A continuación se muestran información del certificado.</p>
+            <div class="data-group">
+                <div class="data-label">Nombre:</div>
+                <div class="data-value">ÁLVARO ENRIQUE</div>
+            </div>
 
-        <div class="data-group">
-            <span class="data-label">Rut:</span>
-            <span class="data-value">16.793.390-4</span>
-        </div>
+            <div class="data-group">
+                <div class="data-label">Carrera:</div>
+                <div class="data-value">UNAB11910 - SOCIOLOGÍA</div>
+            </div>
 
-        <div class="data-group">
-            <span class="data-label">Apellidos:</span>
-            <span class="data-value">DIAZ CONTRERAS</span>
-        </div>
+            <h3 class="section-header">Descarga Certificado</h3>
+            <p class="intro-text">Descarga de certificado en formato PDF.</p>
 
-        <div class="data-group">
-            <span class="data-label">Nombre:</span>
-            <span class="data-value">MARIANELA FERNANDA</span>
-        </div>
-
-        <div class="data-group">
-            <span class="data-label">Carrera:</span>
-            <span class="data-value">ADMINISTRACIÓN DE EMPRESAS</span>
-        </div>
-
-        <div class="data-group">
-            <span class="data-label">Sede:</span>
-            <span class="data-value">SANTIAGO</span>
-        </div>
-
-        <div class="data-group">
-            <span class="data-label">Modalidad:</span>
-            <span class="data-value">DIURNA</span>
-        </div>
-
-        <div class="data-group">
-            <span class="data-label">Fecha de Egreso:</span>
-            <span class="data-value">17 DE DICIEMBRE 2023</span>
-        </div>
-
-        <h3 class="section-title">Descarga Certificado</h3>
-        <p class="intro-text">Descarga de certificado en formato PDF.</p>
-
-        <div class="download-box">
-            <a href="marianelaaa.pdf" class="pdf-btn" download>
-                <img src="pdf_icon_placeholder.png" alt="PDF">
-                Descargar
+            <a href="#" class="pdf-download-btn">
+                <div class="pdf-icon-placeholder">PDF</div>
+                <div class="pdf-text">Descargar</div>
             </a>
         </div>
+    </main>
+
+    <footer>
+        <div class="accreditation-logo">Logo: 6 AÑOS - Universidad Andrés Bello - CNA-Chile</div>
+        <div class="accreditation-logo">Logo: 8 años - MSCHE</div>
+        <div class="accreditation-logo">Logo: CHEA / CIQG</div>
+        <div class="accreditation-logo">Logo: ANECA - Diseño Certificado</div>
+        <div class="accreditation-logo">Logo: Red Campus Sustentable</div>
+
+        <p class="footer-text">
+            Consultas, contacta directamente a la mesa de ayuda de<br>
+            Servicios Académicos de la universidad o mediante tu portal...<br>
+            (Texto cortado en la imagen)
+        </p>
+    </footer>
+
+    <div class="chatbot-widget">
+        <a href="#" class="chatbot-container">
+            <div class="avatar-circle">
+                <div class="avatar-placeholder"></div>
+            </div>
+            <div class="chat-text">
+                <span class="chat-title">¿Te ayudo?</span>
+                <span class="chat-subtitle">Estamos en línea</span>
+            </div>
+        </a>
     </div>
-    
+
+</div>
+
 </body>
 </html>
